@@ -1,0 +1,37 @@
+import { makeStyles } from "@material-ui/core/styles";
+export default makeStyles(() => ({
+  img1: {
+    color: "white",
+    fontSize: "20px",
+    height: "30vh",
+    backgroundImage: "url(../images/img-4.jpg)",
+    padding: "0 0 0 40px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundSize: "cover",
+  },
+  img2: {
+    color: "white",
+    height: "30vh",
+    backgroundImage: "url(../images/img-5.jpg)",
+    padding: "0 0 0 40px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundSize: "cover",
+  },
+  img3: {
+    color: "white",
+    height: "30vh",
+    backgroundImage: "url(../images/img-6.jpg)",
+    padding: "0 0 0 40px",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundSize: "cover",
+  },
+}));
