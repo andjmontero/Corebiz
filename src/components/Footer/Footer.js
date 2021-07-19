@@ -81,7 +81,7 @@ function Footer() {
               style={{ outline: popOver && "solid 2px red" }}
             />
             <Popper open={popOver} anchorEl={anchor} placement="top">
-              <div className={classes.paper}>Ingrese un E-mail Válido</div>
+              <div className={classes.paper}>Ingrese un correo válido</div>
             </Popper>
             <button type="submit" className={classes.btnSub}>
               Suscrbirme

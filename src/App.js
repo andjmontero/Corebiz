@@ -1,10 +1,12 @@
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import CarouselDesktop from "./components/CarouselMain/CarouselDesktop/CarouselDesktop";
-import CarouselMobile from "./components/CarouselMain/CarouselMobile/CarouselMobile";
-import CarouselProductsDesktop from "./components/CarouselProducts/CarouselProductsDesktop/ProductsDesktop/CarouselDesktop";
-import Drawer from "./components/DrawerMobile/Drawer";
 import "./App.css";
+import {
+  Navbar,
+  Footer,
+  CarouselDesktop,
+  CarouselMobile,
+  CarouselProducts,
+  Drawer,
+} from "./components";
 import { useEffect, useState } from "react";
 import {
   ThemeProvider,
@@ -62,8 +64,8 @@ function App() {
           </MUIDrawer>
           <Navbar ToggleDrawer={ToggleDrawer}></Navbar>
           {width > 668 ? <CarouselDesktop /> : <CarouselMobile />}
-          {error && <Typography component="h1">{error}</Typography>}
-          <CarouselProductsDesktop products={products} />
+          {error && <Typography variant="h1">{error}</Typography>}
+          <CarouselProducts products={products} />
           {isLoading && <LinearProgress />}
           <Footer />
         </CartProvider>

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { Container, Typography } from "@material-ui/core";
-import ProductCard from "../../ProductCard/ProductCard";
+import ProductCard from "../../CarouselProducts/ProductCard/ProductCard";
 import useStyles from "./styles.js";
 function CarouselDesktop({ products }) {
   const classes = useStyles();
