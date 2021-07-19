@@ -3,6 +3,9 @@ export default makeStyles((theme) => ({
   upperFooter: {
     backgroundColor: "#f2f2f2",
     padding: "20px",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "25px",
+    },
   },
 
   novedades: {
@@ -13,12 +16,13 @@ export default makeStyles((theme) => ({
   },
   input: {
     outline: "none",
-    padding: "10px",
+    padding: "15px",
     border: "none",
     marginRight: "7px",
     borderRadius: "5px",
     marginTop: "10px",
-    width: "200px",
+    width: "250px",
+    "&:focus": { outline: "solid 1px black" },
     [theme.breakpoints.down("xs")]: {
       width: "95%",
       height: "20px",
@@ -30,8 +34,13 @@ export default makeStyles((theme) => ({
     backgroundColor: "black",
     border: "none",
     outline: "none",
-    padding: "10px",
+    padding: "15px",
     cursor: "pointer",
+    width: "120px",
+    "&:active": {
+      backgroundColor: "grey",
+      transform: "translateY(2px)",
+    },
     [theme.breakpoints.down("xs")]: {
       width: "100%",
       borderRadius: "5px",
@@ -69,6 +78,7 @@ export default makeStyles((theme) => ({
     width: "200px",
     padding: "5px",
     margin: "8px",
+
     [theme.breakpoints.down("xs")]: {
       fontWeight: "bold",
       padding: "10px",
@@ -83,6 +93,13 @@ export default makeStyles((theme) => ({
       justifyContent: "space-around",
       paddingTop: "10px",
     },
+  },
+  paper: {
+    marginTop: "10px",
+    borderRadius: "9px",
+    backgroundColor: "grey",
+    color: "white",
+    padding: "15px",
   },
   developedBy: { margin: "auto 10px auto 10px" },
   p: { margin: "0px", fontSize: "10px", textAlign: "left" },

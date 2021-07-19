@@ -9,8 +9,10 @@ import {
 import useStyles from "./styles.js";
 import Rating from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import { UseCart } from "../../../CartContext";
 const ProductCard = ({ item }) => {
   const classes = useStyles();
+  const { AddToCart } = UseCart();
   ////Display Comprar Button on mouseHover
   const [inHover, setHover] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
@@ -49,6 +51,7 @@ const ProductCard = ({ item }) => {
       className={classes.root}
       onMouseLeave={() => setHover(false)}
       onMouseEnter={() => setHover(true)}
+      key={item.productId}
     >
       <CardMedia className={classes.media} image={item.imageUrl} />
       <CardContent text="center" className={classes.content}>
@@ -84,13 +87,23 @@ const ProductCard = ({ item }) => {
           <div className={classes.filler2}></div>
         ) : (
           item.installments.map((item) => (
-            <Typography variant="caption" color="textSecondary">
+            <Typography
+              key={item.productId}
+              variant="caption"
+              color="textSecondary"
+            >
               o en {item.quantity}x de RS {priceCuota}
             </Typography>
           ))
         )}
         {inHover || width < 600 ? (
-          <Button size="small" className={classes.btn}>
+          <Button
+            size="small"
+            className={classes.btn}
+            onClick={() => {
+              AddToCart(item);
+            }}
+          >
             Comprar
           </Button>
         ) : (

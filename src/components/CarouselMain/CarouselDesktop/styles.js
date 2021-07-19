@@ -1,18 +1,20 @@
 import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(() => ({
-  carousel: { height: "40vh", display: "flex", backgroundColor: "black" },
-  img: {
-    maxWidth: "55%",
-    height: "auto",
-    borderBottomLeftRadius: "125px",
-    borderTopLeftRadius: "125px",
+  slide: {
+    height: "65vh",
+    display: "flex",
+    width: "100%",
+    backgroundImage: "url(../images/img-3.jpeg)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
-  filler: {
-    width: "45%",
+
+  textMain: {
     color: "white",
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
+    width: "50%",
+    padding: "60px",
   },
-  textMain: { maxWidth: "350px " },
+  text: { margin: "auto" },
 }));

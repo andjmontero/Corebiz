@@ -46,7 +46,7 @@ function CarouselDesktop({ products }) {
       <Container align="center" className={classes.container}>
         <Slider {...settings}>
           {products.map((item) => (
-            <ProductCard item={item} />
+            <ProductCard key={item.productId} item={item} />
           ))}
         </Slider>
       </Container>

@@ -6,6 +6,11 @@ import useStyles from "./styles";
 
 const CarouselMobile = () => {
   const classes = useStyles();
+  const images = [
+    "url(../images/img-4.jpg)",
+    "url(../images/img-5.jpg)",
+    "url(../images/img-6.jpg)",
+  ];
   return (
     <div>
       <Carousel
@@ -17,31 +22,16 @@ const CarouselMobile = () => {
         transitionTime={1000}
         showStatus={false}
       >
-        <div className={classes.img1}>
-          <Typography align="left" variant="h5">
-            ¡Hola! ¿Qué es lo que buscas?
-          </Typography>
-          <Typography align="left" variant="h4">
-            Crear o migrar tu comercio electrónico?
-          </Typography>
-        </div>
-
-        <div className={classes.img2}>
-          <Typography align="left" variant="h5">
-            ¡Hola! ¿Qué es lo que buscas?
-          </Typography>
-          <Typography align="left" variant="h4">
-            Crear o migrar tu comercio electrónico?
-          </Typography>
-        </div>
-        <div className={classes.img3}>
-          <Typography align="left" variant="h5">
-            ¡Hola! ¿Qué es lo que buscas?
-          </Typography>
-          <Typography align="left" variant="h4">
-            Crear o migrar tu comercio electrónico?
-          </Typography>
-        </div>
+        {images.map((img) => (
+          <div className={classes.slide} style={{ backgroundImage: img }}>
+            <Typography align="left" variant="h5">
+              ¡Hola! ¿Qué es lo que buscas?
+            </Typography>
+            <Typography align="left" variant="h4">
+              Crear o migrar tu comercio electrónico?
+            </Typography>
+          </div>
+        ))}
       </Carousel>
     </div>
   );

@@ -1,16 +1,57 @@
-import { Typography, Button, Grid } from "@material-ui/core";
+import { Typography, Button, Grid, Popper } from "@material-ui/core";
 import EmailIcon from "@material-ui/icons/Email";
 import HeadsetMicIcon from "@material-ui/icons/HeadsetMic";
 import NearMeIcon from "@material-ui/icons/NearMe";
 import { useEffect, useState } from "react";
 import useStyles from "./styles";
 function Footer() {
+  const [popOver, setPopOver] = useState(false);
+  const [anchor, setAnchor] = useState(null);
   const classes = useStyles();
   //// Screen Size Check
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
+
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+  });
+  function handle(e) {
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
+    setData(newData);
+  }
+  function validateData(e) {
+    e.preventDefault();
+    setAnchor(e.currentTarget);
+    let validMail =
+      /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (validMail.test(data.email)) {
+      setPopOver(false);
+      submit();
+      return true;
+    } else {
+      setPopOver(true);
+      return false;
+    }
+  }
+
+  function submit() {
+    fetch("https://corebiz-test.herokuapp.com/api/v1/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: data.name, email: data.email }),
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .then((data) => console.log(data))
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 
   return (
     <div>
@@ -21,20 +62,30 @@ function Footer() {
           </Typography>
         </Grid>
         <Grid item xs={11} className={classes.subscription}>
-          <form action="">
+          <form onSubmit={(e) => validateData(e)}>
             <input
+              onChange={(e) => handle(e)}
+              id="name"
+              value={data.name}
               type="text"
               placeholder="Ingresa tu nombre"
               className={classes.input}
+              required
             />
             <input
-              type="email"
-              name=""
-              id=""
+              onChange={(e) => handle(e)}
+              id="email"
+              value={data.email}
               placeholder="Ingresa tu mail"
               className={classes.input}
+              style={{ outline: popOver && "solid 2px red" }}
             />
-            <button className={classes.btnSub}>Suscrbirme</button>
+            <Popper open={popOver} anchorEl={anchor} placement="top">
+              <div className={classes.paper}>Ingrese un E-mail Válido</div>
+            </Popper>
+            <button type="submit" className={classes.btnSub}>
+              Suscrbirme
+            </button>
           </form>
         </Grid>
       </Grid>

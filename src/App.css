@@ -2,14 +2,15 @@
   text-align: center;
 }
 
-.navbar {
-  width: 100%;
-  background-color: black;
-  height: 50px;
-}
-.logo {
-  color: white;
-}
 .slick-arrow:hover {
   color: rgb(133, 122, 122);
+}
+.carousel .control-dots .dot {
+  transition: none;
+}
+.carousel .control-dots .dot.selected {
+  background-color: #f8475f;
+}
+.carousel .control-dots .dot:hover {
+  background-color: #f8475f;
 }

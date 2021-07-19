@@ -1,9 +1,14 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useStyles from "./styles";
 
+const images = [
+  "url(../images/img-3.jpeg)",
+  "url(../images/img-2.jpeg)",
+  "url(../images/imagen.jpeg)",
+];
 const CarouselMain = () => {
   const classes = useStyles();
   return (
@@ -17,47 +22,20 @@ const CarouselMain = () => {
         transitionTime={1000}
         showStatus={false}
       >
-        <div className={classes.carousel}>
-          <div className={classes.filler}>
+        {images.map((img) => (
+          <div className={classes.slide} style={{ backgroundImage: img }}>
             <div className={classes.textMain}>
-              <Typography align="left" variant="h6">
-                ¡Hola! ¿Qué es lo que buscas?
-              </Typography>
-              <Typography align="left" variant="h4">
-                Crear o migrar tu comercio electrónico?
-              </Typography>
+              <div clasName={classes.text}>
+                <Typography align="left" variant="h5">
+                  ¡Hola! ¿Qué es lo que buscas?
+                </Typography>
+                <Typography align="left" variant="h3">
+                  Crear o migrar tu comercio electrónico?
+                </Typography>
+              </div>
             </div>
           </div>
-          <img src="../images/img-01.jpg" className={classes.img} />
-        </div>
-
-        <div className={classes.carousel}>
-          <div className={classes.filler}>
-            <div className={classes.textMain}>
-              <Typography align="left" variant="h6">
-                ¡Hola! ¿Qué es lo que buscas?
-              </Typography>
-              <Typography align="left" variant="h4">
-                Crear o migrar tu comercio electrónico?
-              </Typography>
-            </div>
-          </div>
-          <img src="../images/img-02.jpg" className={classes.img} />
-        </div>
-
-        <div className={classes.carousel}>
-          <div className={classes.filler}>
-            <div className={classes.textMain}>
-              <Typography align="left" variant="h6">
-                ¡Hola! ¿Qué es lo que buscas?
-              </Typography>
-              <Typography align="left" variant="h4">
-                Crear o migrar tu comercio electrónico?
-              </Typography>
-            </div>
-          </div>
-          <img src="../images/img-03.jpg" className={classes.img} />
-        </div>
+        ))}
       </Carousel>
     </div>
   );

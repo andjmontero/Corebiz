@@ -1,57 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
-  MenuItem,
-  Menu,
   Typography,
-  InputBase,
   Badge,
-  IconButton,
   TextField,
   InputAdornment,
+  Grid,
+  Drawer,
+  Button,
+  IconButton,
 } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SearchIcon from "@material-ui/icons/Search";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import { UseCart } from "../../../CartContext";
 import useStyles from "./styles";
-const Navbar = () => {
+const Navbar = ({ ToggleDrawer, cartAmount }) => {
   const classes = useStyles();
+
   return (
     <>
       <AppBar position="sticky" className={classes.appBar} color="inherit">
-        <Toolbar>
-          <div className={classes.brand}>
+        <Grid container align="center">
+          <Grid item xs={2} className={classes.hamburguer}>
+            <IconButton onClick={() => ToggleDrawer("open")}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+
+          <Grid item xs={8} className={classes.brand}>
             <Typography variant="h3">
               corebiz<span className={classes.dot}>.</span>
             </Typography>
-          </div>
-          <div className={classes.search}>
-            <TextField
-              placeholder="¿Qué estás buscando?"
-              className={classes.margin}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment>
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </div>
-          <div className={classes.cartIcon}>
-            <div className={classes.account}>
-              <PersonOutlineIcon />
-              <Typography variant="p">Mi Cuenta</Typography>
-            </div>
+          </Grid>
+
+          <Grid item xs={2} className={classes.cartIcon}>
             <IconButton>
-              {" "}
-              <Badge badgeContent={4} color="primary">
-                <ShoppingCartIcon color="secondary" />
+              <Badge badgeContent={cartAmount} color="primary" showZero>
+                <ShoppingCartIcon color="secondary" fontSize="large" />
               </Badge>
             </IconButton>
-          </div>
-        </Toolbar>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} align="center" className={classes.search}>
+          <TextField
+            placeholder="¿Qué estás buscando?"
+            className={classes.margin}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment>
+                  <SearchIcon fontSize="large" />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Grid>
       </AppBar>
     </>
   );

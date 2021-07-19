@@ -2,19 +2,19 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   root: {
-    width: 255,
+    width: 200,
     height: 350,
     paddingBottom: 0,
     boxShadow: "none",
     [theme.breakpoints.down("xs")]: {
       width: 150,
-      height: 320,
+      height: 290,
     },
   },
   media: {
     height: 170,
     [theme.breakpoints.down("xs")]: {
-      height: 140,
+      height: 120,
     },
   },
   content: {
@@ -40,6 +40,7 @@ export default makeStyles((theme) => ({
   price: { color: "black", fontWeight: "700" },
   priceList: { textDecoration: "line-through", display: "block" },
   btn: {
+    letterSpacing: "2px",
     width: "60%",
     margin: "auto",
     backgroundColor: "black",
