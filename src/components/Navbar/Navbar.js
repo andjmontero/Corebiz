@@ -60,7 +60,9 @@ const Navbar = ({ ToggleDrawer }) => {
               </div>
               <IconButton>
                 <Badge
-                  badgeContent={cartAmount == undefined ? 0 : cartAmount.length}
+                  badgeContent={
+                    cartAmount === undefined ? 0 : cartAmount.length
+                  }
                   color="primary"
                   showZero
                 >
@@ -88,7 +90,9 @@ const Navbar = ({ ToggleDrawer }) => {
             <Grid item xs={2} className={classes.cartIcon}>
               <IconButton>
                 <Badge
-                  badgeContent={cartAmount == undefined ? 0 : cartAmount.length}
+                  badgeContent={
+                    cartAmount === undefined ? 0 : cartAmount.length
+                  }
                   color="primary"
                   showZero
                 >

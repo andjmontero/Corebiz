@@ -1,23 +1,23 @@
+import { useState } from "react";
 import { Typography, Button, Grid, Popper } from "@material-ui/core";
 import EmailIcon from "@material-ui/icons/Email";
 import HeadsetMicIcon from "@material-ui/icons/HeadsetMic";
 import NearMeIcon from "@material-ui/icons/NearMe";
-import { useEffect, useState } from "react";
 import useStyles from "./styles";
+
 function Footer() {
+  const classes = useStyles();
+
+  //Pop Message on Incorrect Mail Entry
   const [popOver, setPopOver] = useState(false);
   const [anchor, setAnchor] = useState(null);
-  const classes = useStyles();
-  //// Screen Size Check
-  const [width, setWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
-  }, []);
 
+  ///From data Validation and Submit
   const [data, setData] = useState({
     name: "",
     email: "",
   });
+
   function handle(e) {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
@@ -45,9 +45,12 @@ function Footer() {
       body: JSON.stringify({ name: data.name, email: data.email }),
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        if (res.ok) {
+          console.log("Information Send");
+        }
       })
-      .then((data) => console.log(data))
+
       .catch((err) => {
         console.log(err.message);
       });

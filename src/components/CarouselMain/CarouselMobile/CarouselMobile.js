@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useStyles from "./styles";
 

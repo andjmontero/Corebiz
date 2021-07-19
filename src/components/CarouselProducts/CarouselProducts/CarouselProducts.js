@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,6 +6,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { Container, Typography } from "@material-ui/core";
 import ProductCard from "../../CarouselProducts/ProductCard/ProductCard";
 import useStyles from "./styles.js";
+
 function CarouselDesktop({ products }) {
   const classes = useStyles();
 

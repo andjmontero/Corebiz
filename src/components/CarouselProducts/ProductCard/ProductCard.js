@@ -13,7 +13,9 @@ import { UseCart } from "../../../CartContext";
 const ProductCard = ({ item }) => {
   const classes = useStyles();
   const { AddToCart } = UseCart();
+
   ////Display Comprar Button on mouseHover
+
   const [inHover, setHover] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -21,6 +23,7 @@ const ProductCard = ({ item }) => {
   }, []);
 
   ///This piece of code fixes the issue with price being without decimals and some items not having priceList numbers
+
   const [priceList, setPriceList] = useState();
   const [price, setPrice] = useState();
   const [priceCuota, setPriceCuota] = useState();
@@ -31,7 +34,7 @@ const ProductCard = ({ item }) => {
         .map((num) => {
           return Number(num);
         });
-      if (price.length == 5) {
+      if (price.length === 5) {
         price.splice(3, 0, ".");
       } else {
         price.splice(2, 0, ".");
@@ -46,6 +49,7 @@ const ProductCard = ({ item }) => {
     setPrice(addDecimals(item.price));
     setPriceCuota(addDecimals(item.installments.map((item) => item.value)));
   }, []);
+
   return (
     <Card
       className={classes.root}
@@ -83,7 +87,7 @@ const ProductCard = ({ item }) => {
         <Typography variant="body1" className={classes.price}>
           por $ {price}
         </Typography>
-        {item.installments == 0 ? (
+        {item.installments === 0 ? (
           <div className={classes.filler2}></div>
         ) : (
           item.installments.map((item) => (

@@ -2,8 +2,13 @@
   text-align: center;
 }
 
-.slick-arrow:hover {
-  color: rgb(133, 122, 122);
+.slick-prev:hover,
+.slick-next:hover {
+  color: #686868 !important;
+}
+.slick-prev:active,
+.slick-next:active {
+  color: #f8475f !important;
 }
 .carousel .control-dots .dot {
   transition: none;

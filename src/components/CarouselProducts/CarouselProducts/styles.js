@@ -26,4 +26,5 @@ export default makeStyles((theme) => ({
       width: "15%",
     },
   },
+  arrow: { color: "red" },
 }));
