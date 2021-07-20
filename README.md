@@ -1,3 +1,7 @@
+
+Para inicializar la app en un servidor local(Puerto 3000) ingresar el comando "npm start" en la terminal, habiendose localizado previamente en la carpeta del proyecto.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
