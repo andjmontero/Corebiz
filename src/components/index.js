@@ -5,3 +5,4 @@ export { default as ProductCard } from "./CarouselProducts/ProductCard/ProductCa
 export { default as CarouselDesktop } from "./CarouselMain/CarouselDesktop/CarouselDesktop";
 export { default as CarouselMobile } from "./CarouselMain/CarouselMobile/CarouselMobile";
 export { default as CarouselProducts } from "./CarouselProducts/CarouselProducts/CarouselProducts";
+export { default as Cart } from "./Cart/Cart";

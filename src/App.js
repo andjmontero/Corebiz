@@ -6,6 +6,7 @@ import {
   CarouselMobile,
   CarouselProducts,
   Drawer,
+  Cart,
 } from "./components";
 import { useEffect, useState } from "react";
 import {
@@ -55,14 +56,21 @@ function App() {
     setState(open);
   };
 
+  const [cartState, setCartState] = useState();
+  const ToggleCart = (open) => {
+    setCartState(open);
+  };
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <CartProvider>
+          <MUIDrawer anchor="right" open={cartState}>
+            <Cart ToggleCart={ToggleCart}></Cart>
+          </MUIDrawer>
           <MUIDrawer anchor="left" open={state}>
             <Drawer ToggleDrawer={ToggleDrawer}></Drawer>
           </MUIDrawer>
-          <Navbar ToggleDrawer={ToggleDrawer}></Navbar>
+          <Navbar ToggleDrawer={ToggleDrawer} ToggleCart={ToggleCart}></Navbar>
           {width > 668 ? <CarouselDesktop /> : <CarouselMobile />}
           {error && <Typography variant="h1">{error}</Typography>}
           <CarouselProducts products={products} />

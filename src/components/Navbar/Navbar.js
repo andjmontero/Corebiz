@@ -15,7 +15,7 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import useStyles from "./styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { UseCart } from "../../CartContext";
-const Navbar = ({ ToggleDrawer }) => {
+const Navbar = ({ ToggleDrawer, ToggleCart }) => {
   const classes = useStyles();
   const { cart } = UseCart();
   const [cartAmount, setCartAmount] = useState();
@@ -24,6 +24,7 @@ const Navbar = ({ ToggleDrawer }) => {
     setCartAmount(cartItems);
   }, [cart]);
 
+  console.log(cart);
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
@@ -60,9 +61,10 @@ const Navbar = ({ ToggleDrawer }) => {
               </div>
               <IconButton>
                 <Badge
-                  badgeContent={cartAmount == undefined ? 0 : cartAmount.length}
+                  badgeContent={cart.length ? cart.length : 0}
                   color="primary"
                   showZero
+                  onClick={() => ToggleCart("open")}
                 >
                   <ShoppingCartIcon color="secondary" />
                 </Badge>
@@ -86,7 +88,7 @@ const Navbar = ({ ToggleDrawer }) => {
             </Grid>
 
             <Grid item xs={2} className={classes.cartIcon}>
-              <IconButton>
+              <IconButton onClick={() => ToggleCart(true)}>
                 <Badge
                   badgeContent={cartAmount == undefined ? 0 : cartAmount.length}
                   color="primary"
