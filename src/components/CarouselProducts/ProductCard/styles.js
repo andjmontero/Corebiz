@@ -29,16 +29,13 @@ export default makeStyles((theme) => ({
   },
   name: { fontWeight: "600" },
   stars: { color: "#f8475f !important", fontSize: "15px !important" },
-  filler1: { height: "19px" },
-  filler2: {
-    height: "14px",
-    [theme.breakpoints.down("xs")]: {
-      height: "23px",
-    },
-  },
 
   price: { color: "black", fontWeight: "700" },
-  priceList: { textDecoration: "line-through", display: "block" },
+  priceList: {
+    textDecoration: "line-through",
+    display: "block",
+    width: "100%",
+  },
   btn: {
     letterSpacing: "2px",
     width: "60%",

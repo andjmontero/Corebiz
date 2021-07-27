@@ -10,7 +10,9 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   function AddToCart(obj) {
     obj.amount = 1;
-    setCart([...cart, obj]);
+    if (!cart.find((item) => item.productId == obj.productId)) {
+      setCart([...cart, obj]);
+    }
   }
   function removeItem(item) {
     setCart(cart.filter((element) => element !== item));

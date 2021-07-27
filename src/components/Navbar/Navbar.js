@@ -15,20 +15,22 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import useStyles from "./styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { UseCart } from "../../CartContext";
+
 const Navbar = ({ ToggleDrawer, ToggleCart }) => {
   const classes = useStyles();
   const { cart } = UseCart();
   const [cartAmount, setCartAmount] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("productsOnCart"));
     setCartAmount(cartItems);
   }, [cart]);
 
-  console.log(cart);
-  const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
+
   return (
     <>
       {width > 720 ? (

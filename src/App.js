@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Navbar,
   Footer,
@@ -7,6 +8,7 @@ import {
   CarouselProducts,
   Drawer,
   Cart,
+  Checkout,
 } from "./components";
 import { useEffect, useState } from "react";
 import {
@@ -17,29 +19,31 @@ import {
 } from "@material-ui/core";
 import theme from "./CustomTheme";
 import { CartProvider } from "./CartContext";
+import "firebase/firestore";
+import { getFireStore } from "./firebase";
 
 function App() {
   //// Products Fetch
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const [products, setProducts] = useState([]);
-  function fetchProducts() {
-    fetch("https://corebiz-test.herokuapp.com/api/v1/products")
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("No se pudo acceder a los productos, pruebe otra vez");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((err) => setError(err.message));
-  }
+
   useEffect(() => {
-    fetchProducts();
+    setIsLoading(true);
+    const db = getFireStore();
+    const itemCollection = db.collection("items");
+    itemCollection
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.size === 0) {
+          console.log("no results");
+        }
+        setProducts(querySnapshot.docs.map((doc) => doc.data()));
+      })
+      .catch((error) => {
+        console.log("Error searchign items", error);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   //// Screen Size Check
@@ -64,18 +68,32 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CartProvider>
-          <MUIDrawer anchor="right" open={cartState}>
-            <Cart ToggleCart={ToggleCart}></Cart>
-          </MUIDrawer>
-          <MUIDrawer anchor="left" open={state}>
-            <Drawer ToggleDrawer={ToggleDrawer}></Drawer>
-          </MUIDrawer>
-          <Navbar ToggleDrawer={ToggleDrawer} ToggleCart={ToggleCart}></Navbar>
-          {width > 668 ? <CarouselDesktop /> : <CarouselMobile />}
-          {error && <Typography variant="h1">{error}</Typography>}
-          <CarouselProducts products={products} />
-          {isLoading && <LinearProgress />}
-          <Footer />
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <MUIDrawer anchor="right" open={cartState}>
+                  <Cart ToggleCart={ToggleCart}></Cart>
+                </MUIDrawer>
+                <MUIDrawer anchor="left" open={state}>
+                  <Drawer ToggleDrawer={ToggleDrawer}></Drawer>
+                </MUIDrawer>
+                <Navbar
+                  ToggleDrawer={ToggleDrawer}
+                  ToggleCart={ToggleCart}
+                ></Navbar>
+                {width > 668 ? <CarouselDesktop /> : <CarouselMobile />}
+                {error && <Typography variant="h1">{error}</Typography>}
+                <CarouselProducts products={products} />
+                {isLoading && <LinearProgress />}
+                <Footer />
+              </Route>
+              <Route exact path="/checkout">
+                <Checkout />
+                <Footer />
+              </Route>
+              <Footer />
+            </Switch>
+          </Router>
         </CartProvider>
       </ThemeProvider>
     </div>

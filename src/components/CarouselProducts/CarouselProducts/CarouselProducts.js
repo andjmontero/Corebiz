@@ -11,7 +11,7 @@ function CarouselDesktop({ products }) {
   const classes = useStyles();
 
   const settings = {
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
     prevArrow: <ArrowBackIosIcon color="secondary" />,

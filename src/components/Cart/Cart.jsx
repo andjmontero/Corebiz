@@ -4,10 +4,13 @@ import useStyles from "./styles.js";
 import { UseCart } from "../../CartContext";
 import { Button, Typography, Grid, IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+
+import { Link } from "react-router-dom";
 function Cart({ ToggleCart }) {
   const classes = useStyles();
 
   const { cart, removeItem, addAmount, substractAmount } = UseCart();
+  let total = cart.reduce((t, i) => t + i.price * i.amount, 0);
 
   return (
     <>
@@ -69,10 +72,15 @@ function Cart({ ToggleCart }) {
             </Grid>
           ))}
           <div className={classes.check}>
-            <Typography variant="h4">
-              Total:${cart.reduce((t, i) => t + i.price * i.amount, 0)}
-            </Typography>
-            <Button className={classes.checkout}>Checkout</Button>
+            <Typography variant="h4">Total:${total}</Typography>
+            <Link to="/checkout" style={{ textDecoration: "none" }}>
+              <Button
+                className={classes.checkout}
+                onClick={() => ToggleCart(false)}
+              >
+                Comprar
+              </Button>
+            </Link>
           </div>
         </div>
       )}

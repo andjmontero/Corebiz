@@ -22,34 +22,6 @@ const ProductCard = ({ item }) => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
 
-  ///This piece of code fixes the issue with price being without decimals and some items not having priceList numbers
-
-  const [priceList, setPriceList] = useState();
-  const [price, setPrice] = useState();
-  const [priceCuota, setPriceCuota] = useState();
-  const addDecimals = (price) => {
-    if (price != null) {
-      price = String(price)
-        .split("")
-        .map((num) => {
-          return Number(num);
-        });
-      if (price.length === 5) {
-        price.splice(3, 0, ".");
-      } else {
-        price.splice(2, 0, ".");
-      }
-      price.join("");
-      return price;
-    }
-  };
-
-  useEffect(() => {
-    setPriceList(addDecimals(item.listPrice));
-    setPrice(addDecimals(item.price));
-    setPriceCuota(addDecimals(item.installments.map((item) => item.value)));
-  }, []);
-
   return (
     <Card
       className={classes.root}
@@ -73,46 +45,43 @@ const ProductCard = ({ item }) => {
           value={item.stars}
           emptyIcon={<StarBorderIcon fontSize="inherit" color="primary" />}
         />
-        {priceList != null ? (
-          <Typography
-            variant="caption"
-            color="textSecondary"
-            className={classes.priceList}
-          >
-            de $ {priceList}
-          </Typography>
-        ) : (
-          <div className={classes.filler1}></div>
-        )}
-        <Typography variant="body1" className={classes.price}>
-          por $ {price}
+
+        <Typography
+          variant="caption"
+          color="textSecondary"
+          className={classes.priceList}
+        >
+          de $ {item.listPrice}
         </Typography>
-        {item.installments === 0 ? (
-          <div className={classes.filler2}></div>
-        ) : (
-          item.installments.map((item) => (
-            <Typography
-              key={item.productId}
-              variant="caption"
-              color="textSecondary"
+
+        <Typography variant="body1" className={classes.price}>
+          por $ {item.price}
+        </Typography>
+
+        <Typography
+          key={item.productId}
+          variant="caption"
+          color="textSecondary"
+        >
+          o en {item.cuotas} cuotas de ${item.value}
+        </Typography>
+
+        <div>
+          {" "}
+          {inHover || width < 600 ? (
+            <Button
+              size="small"
+              className={classes.btn}
+              onClick={() => {
+                AddToCart(item);
+              }}
             >
-              o en {item.quantity}x de RS {priceCuota}
-            </Typography>
-          ))
-        )}
-        {inHover || width < 600 ? (
-          <Button
-            size="small"
-            className={classes.btn}
-            onClick={() => {
-              AddToCart(item);
-            }}
-          >
-            Comprar
-          </Button>
-        ) : (
-          ""
-        )}
+              Comprar
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
       </CardContent>
     </Card>
   );

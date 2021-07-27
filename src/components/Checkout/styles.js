@@ -1,6 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+  form: {
+    width: "600px",
+    marginTop: "50px",
+    [theme.breakpoints.down("sm")]: {
+      width: "80%",
+    },
+  },
+  mainCheckout: { display: "flex", justifyItems: "center" },
   cartEmpty: { textAlign: "center", width: 500 },
   cart: {
     [theme.breakpoints.down("sm")]: {
@@ -41,6 +49,37 @@ export default makeStyles((theme) => ({
       margin: "2px",
     },
   },
-  check: { textAlign: "center" },
-  checkout: { backgroundColor: "#f8475f", marginTop: "10px" },
+  check: {
+    textAlign: "center",
+  },
+  checkout: { backgroundColor: "#f8475f", border: "solid 1px black" },
+  close: { textAlign: "right", marginRight: "200px" },
+  cancelar: {
+    backgroundColor: "grey",
+    padding: "5px",
+    margin: "20px",
+    border: "solid 1px black",
+  },
+  modal: {
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalIn: {
+    backgroundColor: "white",
+    padding: "50px",
+    textAlign: "center",
+  },
+  btnModal: {
+    backgroundColor: "#f8475f",
+    color: "white",
+    padding: "10px",
+    margin: "20px",
+    "&:hover": {
+      color: "black",
+      backgroundColor: "#f8475f",
+    },
+  },
 }));
