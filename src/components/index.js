@@ -6,4 +6,4 @@ export { default as CarouselDesktop } from "./CarouselMain/CarouselDesktop/Carou
 export { default as CarouselMobile } from "./CarouselMain/CarouselMobile/CarouselMobile";
 export { default as CarouselProducts } from "./CarouselProducts/CarouselProducts/CarouselProducts";
 export { default as Cart } from "./Cart/Cart";
-export { default as Checkout } from "./Checkout/checkout.js.js.js";
+export { default as Checkout } from "./Checkout/checkout";
